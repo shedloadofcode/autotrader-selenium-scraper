@@ -95,6 +95,10 @@ def scrape_autotrader(cars, criteria):
 
         for i in range(int(number_of_pages)):
             driver.get(url + f"&page={str(i + 1)}")
+            
+            time.sleep(5)
+            page_source = driver.page_source
+            content = BeautifulSoup(page_source, "html.parser")
 
             articles = content.findAll("section", attrs={"data-testid": "trader-seller-listing"})
 
